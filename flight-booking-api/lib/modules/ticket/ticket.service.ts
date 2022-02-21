@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Ticket } from './ticket.interface';
+import { Ticket } from './ticket.entity';
 
 @Injectable()
 export class TicketsService {
