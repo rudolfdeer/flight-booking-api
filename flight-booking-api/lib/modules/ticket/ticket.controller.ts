@@ -8,6 +8,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { UserId } from 'lib/utils/user.decorator';
 import { TicketsService } from './ticket.service';
 
 @Controller('tickets')
@@ -16,8 +17,7 @@ export class TicketsController {
 
   @UseGuards(AuthGuard('jwt'))
   @Get('/booked')
-  async getBookedTickets(@Request() req) {
-    const userId = req.user.id;
+  async getBookedTickets(@UserId() userId: number) {
     return this.ticketsService.getBookedTickets(userId);
   }
 
@@ -29,15 +29,13 @@ export class TicketsController {
 
   @UseGuards(AuthGuard('jwt'))
   @Post('/booked/:id')
-  async bookTicket(@Request() req, @Param('id') id: string) {
-    const userId = req.user.id;
+  async bookTicket(@UserId() userId: number, @Param('id') id: string) {
     return this.ticketsService.bookTicket(id, userId);
   }
 
   @UseGuards(AuthGuard('jwt'))
   @Delete('/booked/:id')
-  async deleteBookedTicket(@Request() req, @Param('id') id: string) {
-    const userId = req.user.id;
+  async deleteBookedTicket(@UserId() userId: number, @Param('id') id: string) {
     return this.ticketsService.deleteBookedTicket(id, userId);
   }
 }

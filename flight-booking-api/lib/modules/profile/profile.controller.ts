@@ -10,6 +10,7 @@ import {
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { Response } from 'express';
+import { UserId } from 'lib/utils/user.decorator';
 import { Profile } from './profile.entity';
 import { ProfilesService } from './profile.service';
 
@@ -45,15 +46,16 @@ export class ProfileController {
 
   @UseGuards(AuthGuard('jwt'))
   @Put()
-  async update(@Request() req, @Body() body: Profile) {
-    const userId = req.user.id;
+  async update(@UserId() userId: number, @Body() body: Profile) {
     return this.profileService.update(body, userId);
   }
 
   @UseGuards(AuthGuard('jwt'))
   @Delete()
-  async deleteById(@Request() req, @Res({ passthrough: true }) res: Response) {
-    const userId = req.user.id;
+  async deleteById(
+    @UserId() userId: number,
+    @Res({ passthrough: true }) res: Response,
+  ) {
     await this.profileService.deleteById(userId);
     res.clearCookie('jwt');
     return null;
