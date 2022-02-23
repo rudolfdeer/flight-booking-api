@@ -67,12 +67,13 @@ export class ProfilesService {
   }
 
   async signIn(user: Profile) {
-    const payload = { email: user.email, sub: user.id };
+    const payload = { email: user.email, sub: user.id, isAdmin: user.isAdmin };
     const token = this.jwtService.sign(payload);
 
     return {
       id: user.id,
       access_token: token,
+      isAdmin: user.isAdmin,
     };
   }
 
