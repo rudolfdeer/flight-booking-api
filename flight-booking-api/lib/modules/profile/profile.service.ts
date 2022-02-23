@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
-import { comparePasswords } from 'lib/utils/comparePasswords.util';
-import { encryptPassword } from 'lib/utils/encryptPassword.util';
+import { comparePasswords } from 'lib/utils/auth/comparePasswords.util';
+import { encryptPassword } from 'lib/utils/auth/encryptPassword.util';
 import { Repository } from 'typeorm';
 import { Profile } from './profile.entity';
 

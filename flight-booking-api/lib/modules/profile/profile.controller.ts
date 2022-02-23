@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { Response } from 'express';
-import { UserId } from 'lib/utils/user.decorator';
+import { UserId } from 'lib/utils/decorators/user.decorator';
 import { Profile } from './profile.entity';
 import { ProfilesService } from './profile.service';
 

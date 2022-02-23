@@ -27,6 +27,9 @@ export class Profile {
   @Column({ nullable: false })
   updatedAt: string;
 
+  @Column({ nullable: false, default: false })
+  isAdmin: boolean;
+
   @OneToMany(() => Ticket, (ticket) => ticket.profile)
   @JoinColumn()
   bookedTickets: Ticket[];

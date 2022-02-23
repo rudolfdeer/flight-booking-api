@@ -10,6 +10,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { AdminGuard } from 'lib/utils/guards/admin.guard';
 import { Flight } from './flight.entity';
 import { FlightsService } from './flight.service';
 
@@ -30,6 +31,7 @@ export class FlightsController {
   }
 
   @UseGuards(AuthGuard('jwt'))
+  //@UseGuards(AdminGuard)
   @Post()
   create(@Body() body: Flight, @Request() req) {
     return this.flightsService.create(body);

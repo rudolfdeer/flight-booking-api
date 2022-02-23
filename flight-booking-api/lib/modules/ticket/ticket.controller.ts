@@ -4,11 +4,10 @@ import {
   Get,
   Param,
   Post,
-  Request,
   UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { UserId } from 'lib/utils/user.decorator';
+import { UserId } from 'lib/utils/decorators/user.decorator';
 import { TicketsService } from './ticket.service';
 
 @Controller('tickets')

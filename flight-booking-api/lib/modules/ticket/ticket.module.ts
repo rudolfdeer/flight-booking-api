@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { JwtStrategy } from 'lib/utils/jwt.strategy';
+import { JwtStrategy } from 'lib/utils/strategies/jwt.strategy';
 import { TicketsController } from './ticket.controller';
 import { Ticket } from './ticket.entity';
 import { TicketsService } from './ticket.service';
