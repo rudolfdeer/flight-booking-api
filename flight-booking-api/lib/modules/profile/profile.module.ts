@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { TOKEN } from 'lib/constants/auth';
 import { JwtStrategy } from 'lib/utils/strategies/jwt.strategy';
 import { LocalStrategy } from 'lib/utils/strategies/local.strategy';
 import { ProfileController } from './profile.controller';
@@ -14,8 +13,8 @@ import { ProfilesService } from './profile.service';
     TypeOrmModule.forFeature([Profile]),
     PassportModule,
     JwtModule.register({
-      secret: TOKEN.SECRET,
-      signOptions: { expiresIn: TOKEN.LIFE },
+      secret: process.env.TOKEN_SECRET,
+      signOptions: { expiresIn: process.env.TOKEN_LIFE },
     }),
   ],
   controllers: [ProfileController],
