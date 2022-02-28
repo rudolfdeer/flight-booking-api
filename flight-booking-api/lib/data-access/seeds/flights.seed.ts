@@ -47,6 +47,6 @@ const flightsSeed = [
     avaliableTicketsDeluxe: 15,
     createdAt: 'Tue Aug 31 2021 10:35:45 GMT+0300 (Moscow Standard Time)',
   },
-]
+];
 
 export default flightsSeed;

@@ -34,6 +34,6 @@ const ticketsSeed = [
     isAvaliable: true,
     createdAt: 'Tue Aug 31 2021 00:35:45 GMT+0300 (Moscow Standard Time)',
   },
-]
+];
 
 export default ticketsSeed;
