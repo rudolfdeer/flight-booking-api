@@ -1,4 +1,3 @@
-import { CRYPTO } from 'lib/constants/auth';
 import * as crypto from 'crypto';
 
 export const encryptPassword = (password: string) => {
@@ -8,10 +7,10 @@ export const encryptPassword = (password: string) => {
 
   const encryptedPassword = crypto.pbkdf2Sync(
     password,
-    CRYPTO.SALT,
-    CRYPTO.ITERATIONS,
-    CRYPTO.KEYLEN,
-    CRYPTO.DIGEST,
+    process.env.CRYPTO_SALT,
+    parseInt(process.env.CRYPTO_ITERATIONS),
+    parseInt(process.env.CRYPTO_KEYLEN),
+    process.env.CRYPTO_DIGEST,
   );
   return encryptedPassword.toString('hex');
 };

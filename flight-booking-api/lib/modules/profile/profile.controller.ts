@@ -10,7 +10,8 @@ import {
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { Response } from 'express';
-import { UserId } from 'lib/utils/decorators/user.decorator';
+import { User } from 'lib/utils/decorators/user.decorator';
+import { UserId } from 'lib/utils/decorators/userId.decorator';
 import { Profile } from './profile.entity';
 import { ProfilesService } from './profile.service';
 
@@ -31,8 +32,11 @@ export class ProfileController {
 
   @UseGuards(AuthGuard('local'))
   @Post('/sign-in')
-  async signIn(@Request() req, @Res({ passthrough: true }) res: Response) {
-    const response = await this.profileService.signIn(req.user);
+  async signIn(
+    @User() user: Profile,
+    @Res({ passthrough: true }) res: Response,
+  ) {
+    const response = await this.profileService.signIn(user);
     res.cookie('jwt', response.access_token);
     return response;
   }

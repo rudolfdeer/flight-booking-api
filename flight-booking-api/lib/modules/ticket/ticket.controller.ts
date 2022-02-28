@@ -7,7 +7,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { UserId } from 'lib/utils/decorators/user.decorator';
+import { UserId } from 'lib/utils/decorators/userId.decorator';
 import { TicketsService } from './ticket.service';
 
 @Controller('tickets')
