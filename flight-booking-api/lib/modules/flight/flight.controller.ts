@@ -7,6 +7,7 @@ import {
   Post,
   Put,
   UseGuards,
+  HttpException,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { AdminGuard } from 'lib/utils/guards/admin.guard';
@@ -24,8 +25,12 @@ export class FlightsController {
   }
 
   @Get('/:id')
-  getFlight(@Param('id') id: string) {
-    return this.flightsService.findById(id);
+  async getFlight(@Param('id') id: string) {
+    const response = await this.flightsService.findById(id);
+    if (!response) {
+      throw new HttpException('flight not found', 404);
+    }
+    return response;
   }
 
   @UseGuards(AdminGuard)
@@ -36,7 +41,7 @@ export class FlightsController {
 
   @UseGuards(AdminGuard)
   @Put('/:id')
-  update(@Body() body: Flight, @Param('id') id: string) {
+  async update(@Body() body: Flight, @Param('id') id: string) {
     return this.flightsService.update(body, id);
   }
 

@@ -19,6 +19,10 @@ export class FlightsService {
   async findById(id: string) {
     const flight = await this.flightsRepository.findOne(id);
 
+    if (!flight) {
+      return null;
+    }
+
     return flight;
   }
 

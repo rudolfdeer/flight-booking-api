@@ -1,6 +1,9 @@
 import { Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable } from '@nestjs/common';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 
 const cookieExtractor = (req) => {
   let token = null;
@@ -13,6 +16,7 @@ const cookieExtractor = (req) => {
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor() {
+    console.log('here', process.env.TOKEN_SECRET)
     super({
       jwtFromRequest: cookieExtractor,
       ignoreExpiration: false,

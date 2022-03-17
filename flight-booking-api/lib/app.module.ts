@@ -11,7 +11,9 @@ import { ConfigModule } from '@nestjs/config';
     TypeOrmModule.forRoot({
       autoLoadEntities: true,
     }),
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     ProfileModule,
     FlightModule,
     TicketModule,
