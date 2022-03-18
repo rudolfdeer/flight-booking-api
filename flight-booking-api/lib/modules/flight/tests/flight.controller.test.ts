@@ -29,6 +29,8 @@ describe('flight controller', () => {
     createdAt: 'Tue Aug 31 2021 00:35:45 GMT+0300 (Moscow Standard Time)',
   } as Flight;
 
+  const id = '1';
+
   beforeEach(async () => {
     module = await Test.createTestingModule({
       imports: [
@@ -48,8 +50,8 @@ describe('flight controller', () => {
       providers: [FlightsService],
     }).compile();
 
-    flightService = await module.get<FlightsService>(FlightsService);
-    flightController = await module.get<FlightsController>(FlightsController);
+    flightService = module.get<FlightsService>(FlightsService);
+    flightController = module.get<FlightsController>(FlightsController);
   });
 
   afterEach(async () => {
@@ -76,7 +78,7 @@ describe('flight controller', () => {
         .spyOn(flightService, 'findById')
         .mockImplementation(async () => result);
 
-      expect(await flightController.getFlight('1')).toBe(result);
+      expect(await flightController.getFlight(id)).toBe(result);
     });
 
     it('should return 404 error when no flight was found', async () => {
@@ -150,7 +152,7 @@ describe('flight controller', () => {
         .mockImplementation(async () => guard.error);
 
       try {
-        await flightController.update(result, '1');
+        await flightController.update(result, id);
       } catch (err) {
         expect(err).toBeInstanceOf(ForbiddenException);
       }
@@ -163,7 +165,7 @@ describe('flight controller', () => {
         .spyOn(flightService, 'update')
         .mockImplementation(async () => result);
 
-      const response = await flightController.update(result, '1');
+      const response = await flightController.update(result, id);
 
       expect(response).toBe(result);
       expect(response.id).toBe(1);
@@ -185,7 +187,7 @@ describe('flight controller', () => {
         .spyOn(flightService, 'delete')
         .mockImplementation(async () => result);
 
-      const response = await flightController.delete('1');
+      const response = await flightController.delete(id);
 
       expect(response).toBe(result);
     });
