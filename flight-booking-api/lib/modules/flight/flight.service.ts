@@ -37,7 +37,9 @@ export class FlightsService {
   async update(body: Flight, id: string) {
     await this.flightsRepository.update(id, body);
 
-    return this.findById(id);
+    const flight = await this.flightsRepository.findOne(id);
+
+    return flight;
   }
 
   async delete(id: string) {
