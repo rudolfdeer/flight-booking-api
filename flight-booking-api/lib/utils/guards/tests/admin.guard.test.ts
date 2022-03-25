@@ -1,5 +1,5 @@
 import { createMock } from '@golevelup/ts-jest';
-import { ExecutionContext, UnauthorizedException } from '@nestjs/common';
+import { ExecutionContext } from '@nestjs/common';
 import { AdminGuard } from '../admin.guard';
 
 describe('admin guard', () => {

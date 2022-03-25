@@ -86,6 +86,7 @@ describe('flights', () => {
 
   afterEach(async () => {
     await app.close();
+    jest.clearAllMocks();
   });
 
   describe(`/GET flights`, () => {

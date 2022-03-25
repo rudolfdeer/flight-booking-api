@@ -56,6 +56,7 @@ describe('flight controller', () => {
 
   afterEach(async () => {
     await module.close();
+    jest.clearAllMocks();
   });
 
   describe('find all', () => {
@@ -191,5 +192,5 @@ describe('flight controller', () => {
 
       expect(response).toBe(result);
     });
-  })
+  });
 });

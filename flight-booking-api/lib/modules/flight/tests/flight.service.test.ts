@@ -2,11 +2,6 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { FlightsService } from '../flight.service';
 import { getRepositoryToken, TypeOrmModule } from '@nestjs/typeorm';
 import { Flight } from '../flight.entity';
-import { Repository } from 'typeorm';
-
-type MockType<T> = {
-  [P in keyof T]?: jest.Mock;
-};
 
 const flight = {
   id: 1,
@@ -67,6 +62,7 @@ describe('flight service', () => {
 
   afterEach(async () => {
     await module.close();
+    jest.clearAllMocks();
   });
 
   it('should be defined', () => {
