@@ -15,22 +15,22 @@ import { TicketsService } from './ticket.service';
 export class TicketsController {
   constructor(private readonly ticketsService: TicketsService) {}
 
-  @Get('/booked')
+  @Get()
   async getBookedTickets(@UserId() userId: number) {
     return this.ticketsService.getBookedTickets(userId);
   }
 
-  @Get('/booked/:id')
+  @Get('/:id')
   async getTicket(@Param('id') id: string) {
     return this.ticketsService.findById(id);
   }
 
-  @Post('/booked/:id')
+  @Post('/:id')
   async bookTicket(@UserId() userId: number, @Param('id') id: string) {
     return this.ticketsService.bookTicket(id, userId);
   }
 
-  @Delete('/booked/:id')
+  @Delete('/:id')
   async deleteBookedTicket(@UserId() userId: number, @Param('id') id: string) {
     return this.ticketsService.deleteBookedTicket(id, userId);
   }
