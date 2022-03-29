@@ -6,30 +6,30 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ForbiddenException, HttpException } from '@nestjs/common';
 import { AdminGuard } from 'lib/utils/guards/admin.guard';
 
+const flight = {
+  id: 1,
+  date: '2022-10-11',
+  time: '21:34',
+  departurePoint: 'MSQ',
+  destinationPoint: 'CDG ',
+  priceEconomy: 120,
+  priceBusiness: 185,
+  priceDeluxe: 220,
+  totalTicketsEconomy: 123,
+  totalTicketsBusiness: 41,
+  totalTicketsDeluxe: 18,
+  avaliableTicketsEconomy: 122,
+  avaliableTicketsBusiness: 40,
+  avaliableTicketsDeluxe: 18,
+  createdAt: 'Tue Aug 31 2021 00:35:45 GMT+0300 (Moscow Standard Time)',
+} as Flight;
+
+const id = '1';
+
 describe('flight controller', () => {
   let flightController: FlightsController;
   let flightService: FlightsService;
   let module: TestingModule;
-
-  const flight = {
-    id: 1,
-    date: '2022-10-11',
-    time: '21:34',
-    departurePoint: 'MSQ',
-    destinationPoint: 'CDG ',
-    priceEconomy: 120,
-    priceBusiness: 185,
-    priceDeluxe: 220,
-    totalTicketsEconomy: 123,
-    totalTicketsBusiness: 41,
-    totalTicketsDeluxe: 18,
-    avaliableTicketsEconomy: 122,
-    avaliableTicketsBusiness: 40,
-    avaliableTicketsDeluxe: 18,
-    createdAt: 'Tue Aug 31 2021 00:35:45 GMT+0300 (Moscow Standard Time)',
-  } as Flight;
-
-  const id = '1';
 
   beforeEach(async () => {
     module = await Test.createTestingModule({
