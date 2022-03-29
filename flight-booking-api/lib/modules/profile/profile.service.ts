@@ -26,6 +26,8 @@ export class ProfilesService {
   async findById(id: string | number): Promise<Profile> {
     const user = await this.profileRepository.findOne(id);
 
+    if (!user) return null;
+
     return user;
   }
 
@@ -79,6 +81,7 @@ export class ProfilesService {
 
   async deleteById(id: number): Promise<void> {
     await this.profileRepository.delete(id);
+    return null;
   }
 
   async update(body: Profile, userId: number) {
