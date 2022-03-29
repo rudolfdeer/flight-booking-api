@@ -9,8 +9,6 @@ import { ProfileController } from '../profile.controller';
 import { Profile } from '../profile.entity';
 import { ProfilesService } from '../profile.service';
 import * as Cookies from 'js-cookie';
-import * as mocks from 'node-mocks-http';
-import EventEmitter from 'events';
 import { Response } from 'express';
 
 const user = {
