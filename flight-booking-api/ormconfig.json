@@ -1,0 +1,16 @@
+{
+  "type": "postgres",
+  "host": "127.0.0.1",
+  "port": 5432,
+  "username": "postgres",
+  "password": "123",
+  "database": "flights",
+  "entities": ["dist/**/*.entity{.ts,.js}"],
+  "migrations": ["dist/data-access/migrations/**/*.js"],
+  "subscribers": ["dist/data-access/subscribers/**/*.ts"],
+  "synchronize": true,
+  "cli": {
+    "migrationsDir": "./lib/data-access/migrations"
+  },
+  "autoSchemaSync": true
+}
